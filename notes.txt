@@ -1,0 +1,10 @@
+npm i next@latest react@latest react-dom@latest 
+
+gcloud artifacts docker images list us-east1-docker.pkg.dev/onlinetaxman-c6d0f/gcf-artifacts/onlinetaxman--c6d0f__us--east1__ssronlinetaxmanc6d0f --sort-by=CREATE_TIME
+
+
+
+sha256:88a87ae559f6c049ae38728bf11aee43a907183da6f683549e1e7bdf92ceb4d3
+
+
+gcloud functions deploy ssronlinetaxmanc6d0f --region=us-east1 --gen2 --runtime=nodejs22 --entry-point=ssronlinetaxmanc6d0f --trigger-http --docker-image=us-east1-docker.pkg.dev/onlinetaxman-c6d0f/gcf-artifacts/onlinetaxman--c6d0f__us--east1__ssronlinetaxmanc6d0f@sha256:88a87ae559f6c049ae38728bf11aee43a907183da6f683549e1e7bdf92ceb4d3

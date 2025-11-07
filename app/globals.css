@@ -1,0 +1,163 @@
+@import "tailwindcss";
+
+@theme {
+  /* === Blue Shades === */
+  --color-custom-blue:     oklch(51.01% 0.174 235.11);  /* #0d7ec9 */
+  --color-custom-blue-80:  oklch(67.82% 0.127 235.11);  /* #57aee6 */
+  --color-custom-blue-60:  oklch(83.91% 0.074 235.11);  /* #a3d4f2 */
+  --color-custom-blue-40:  oklch(93.00% 0.030 235.11);  /* #dceefe */
+  --color-custom-blue-20:  oklch(98.00% 0.010 235.11);  /* #f4faff */
+  --color-custom-blue-10:  oklch(99.00% 0.005 235.11);  /* #fafcff */
+  
+
+  /* === Orange Shades === */
+  --color-custom-orange: oklch(65.21% 0.183 31.77);       /* #f28136 */
+  --color-custom-orange-80: oklch(73.45% 0.123 31.77);    /* #f5a86c */
+  --color-custom-orange-60: oklch(81.69% 0.064 31.77);    /* #f8c5a1 */
+
+  /* === Green Shades (Success) === */
+  --color-custom-green: oklch(65% 0.15 140);              /* #2bbf73 */
+  --color-custom-green-80: oklch(75% 0.10 140);           /* #73d4a1 */
+  --color-custom-green-60: oklch(85% 0.05 140);           /* #c6ecd7 */
+
+  /* === Red Shades (Error) === */
+  --color-custom-red: oklch(60% 0.19 25);                 /* #e04949 */
+  --color-custom-red-80: oklch(70% 0.12 25);              /* #ee7f7f */
+  --color-custom-red-60: oklch(85% 0.06 25);              /* #f8d3d3 */
+
+  /*
+  --color-red-700:oklch(60% 0.19 25);
+  --color-red-600:oklch(70% 0.12 25);
+  --color-red-500:oklch(85% 0.06 25); */
+
+  /* === Yellow (Warning) === */
+  --color-custom-yellow: oklch(75% 0.17 100);             /* #f5e84c */
+  --color-custom-yellow-80: oklch(85% 0.11 100);          /* #f9f182 */
+  --color-custom-yellow-60: oklch(93% 0.06 100);          /* #fcf9c3 */
+
+  /* === Neutral / Gray === */
+  --color-custom-gray: oklch(60% 0.02 235);               /* #999da5 */
+  --color-custom-gray-80: oklch(75% 0.01 235);            /* #c4c7cc */
+  --color-custom-gray-60: oklch(90% 0.005 235);           /* #eaebec */
+
+  /* === Base RGB Fallbacks === */
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+
+
+  --color-custom-blue-muted: oklch(97% 0.008 235.11); /* slightly stronger than blue-10 */
+
+}
+
+
+.hover-shadow-wrapper .react-select__control {
+  @apply shadow-sm transition-shadow;
+}
+
+/* Shadow on hover of parent */
+.hover-shadow-wrapper:hover .react-select__control {
+  @apply shadow-lg;
+}
+
+.shadow-to-children .child-shadow {
+  @apply shadow-sm transition-shadow;
+}
+
+.shadow-to-children:hover .child-shadow {
+  @apply shadow-lg;
+}
+
+.custom-input {
+  @apply mt-3 focus:ring-2 focus:ring-custom-blue outline-none block w-full
+    pl-3 pr-10 py-2 text-base border border-gray-300 rounded-md shadow-sm
+    sm:text-sm transition duration-300 ease-in-out hover:shadow-lg;
+}
+
+.table-custom-input {
+  @apply focus:ring-2 focus:ring-custom-blue outline-none block w-full
+    xl:pl-3 xl:pr-3 xl:py-2 text-base border border-gray-300 rounded-md shadow-sm
+    xl:text-sm transition-all duration-300 ease-out hover:shadow-lg !mt-0;
+}
+
+/* this is only for testing purposes, to simulate custom-input when i can't use css clases like in Select component ->*/
+.custom-text-input {
+  margin-top: 1rem; /* mt-4 */
+  display: block; /* block */
+  width: 100%; /* w-full */
+  padding: 0.5rem 1rem; /* px-4 py-2 */
+  font-size: 1rem; /* text-base */
+  border: 1px solid #D1D5DB; /* border + border-gray-300 */
+  border-radius: 0.375rem; /* rounded-md */
+  box-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1),
+              0 1px 2px -1px rgb(0 0 0 / 0.1); /* shadow-sm */
+  transition-property: box-shadow;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); /* ease-in-out */
+  transition-duration: 300ms; /* duration-300 */
+  outline: 2px solid transparent; /* focus:outline-hidden */
+  outline-offset: 2px;
+}
+
+/* Focus ring */
+.custom-text-input:focus {
+  box-shadow: 0 0 0 2px #0d7ec9; /* focus:ring-2 focus:ring-custom-blue */
+  border-color: #0d7ec9;
+}
+
+/* Hover shadow */
+.custom-text-input:hover {
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+              0 4px 6px -4px rgb(0 0 0 / 0.1); /* shadow-lg */
+}
+
+/*<- this is only for testing purposes, to simulate custom-input when i can't use css clases like in Select component */
+
+input[type='number']::-webkit-outer-spin-button,
+input[type='number']::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer; 
+}
+
+/* Firefox */
+input[type='number'] {
+  appearance: textfield;        /* standard syntax */
+  -moz-appearance: textfield;   /* Firefox-specific fallback */
+}
+body {
+  color: rgb(var(--foreground-rgb));
+  background-color: rgb(249 250 251);
+  /*background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    ),
+    rgb(var(--background-start-rgb));*/
+  transition: background-color 0.3s, color 0.3s;
+}
+/* Custom ring focus styles */
+
+
+/*
+
+.container {
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}*/
+
+.tool-tip .tool-tip__icon {
+  background: #27b1f0;
+  border-radius: 10px;
+  cursor: pointer;
+  display: inline-block;
+  font-style: italic;
+  font-family: times new roman;
+  height: 20px;
+  line-height: 1.3em;
+  text-align: center;
+  width: 20px;
+}
