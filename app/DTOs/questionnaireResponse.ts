@@ -1,4 +1,4 @@
-import { doc, DocumentData, DocumentReference, getDoc } from "firebase/firestore";
+import { doc, DocumentData, DocumentReference, getDoc, setDoc } from "firebase/firestore";
 import { db } from "../firebase";
 
 export interface QuestionnaireResponse {
@@ -15,24 +15,26 @@ export const fetchQuestionnaireResponseWithReference = async (
   email: string
 ): Promise<[QuestionnaireResponseRecord, DocumentReference<DocumentData>]> => {
   try {
-    // Get the reference to the questionnaire response document
     const questionnaireDocRef = doc(db, "questionnaireResponse", email);
-
-    // Fetch the document data
     const questionnaireDoc = await getDoc(questionnaireDocRef);
 
     if (questionnaireDoc.exists()) {
-      const data = questionnaireDoc.data() as QuestionnaireResponseRecord; // Directly cast to the expected type
-      return [data, questionnaireDocRef]; // Return the data and document reference
-    } else {
-      throw new Error("Questionnaire response document does not exist.");
+      const data = questionnaireDoc.data() as QuestionnaireResponseRecord;
+      return [data, questionnaireDocRef];
     }
+
+    // ✅ Document didn't exist → create an empty one
+    const emptyRecord: QuestionnaireResponseRecord = {};
+
+    await setDoc(questionnaireDocRef, emptyRecord);
+
+    console.log(`Created new questionnaireResponse record for: ${email}`);
+    return [emptyRecord, questionnaireDocRef];
   } catch (error) {
     console.error("Error fetching questionnaire response:", error);
-    throw new Error("Failed to fetch your questionnaire response.");
+    throw new Error("Failed to fetch or create your questionnaire response.");
   }
 };
-
 
 
 
@@ -41,20 +43,22 @@ export const fetchQuestionnaireResponse = async (
   email: string
 ): Promise<QuestionnaireResponseRecord> => {
   try {
-    // Get the reference to the questionnaire response document
     const questionnaireDocRef = doc(db, "questionnaireResponse", email);
-
-    // Fetch the document data
     const questionnaireDoc = await getDoc(questionnaireDocRef);
 
     if (questionnaireDoc.exists()) {
-      const data = questionnaireDoc.data() as QuestionnaireResponseRecord; // Directly cast to the expected type
-      return data ; // Return the data and document reference
-    } else {
-      throw new Error("Questionnaire response document does not exist.");
+      return questionnaireDoc.data() as QuestionnaireResponseRecord;
     }
+
+    // ✅ Create empty record if it didn't exist
+    const emptyRecord: QuestionnaireResponseRecord = {};
+
+    await setDoc(questionnaireDocRef, emptyRecord);
+    console.log(`Created new questionnaireResponse record for: ${email}`);
+
+    return emptyRecord;
   } catch (error) {
     console.error("Error fetching questionnaire response:", error);
-    throw new Error("Failed to fetch your questionnaire response.");
+    throw new Error("Failed to fetch or create your questionnaire response.");
   }
 };

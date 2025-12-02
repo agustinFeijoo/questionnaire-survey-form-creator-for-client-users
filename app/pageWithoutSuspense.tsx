@@ -11,7 +11,7 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { decrypt, retrieveCredentials, setLoginCookies } from './helper';
 import { auth } from './firebase';
 import Link from 'next/link';
-import { checkIfUserExists } from './(routes)/forgot-password/helper';
+//import { checkIfUserExists } from './(routes)/forgot-password/helper';
 
 
 
@@ -95,10 +95,10 @@ export default function PageWithoutSuspense() {
     } catch (err: any) {
       console.error('Error signing in handle:', err);
       if (err.message === "Firebase: Error (auth/invalid-credential)."){
-        let userExists=await checkIfUserExists(email);
-        if(userExists.exists && !userExists.hasSignedUp)
-          setSignInError(`You are enabled to sign up with this email (${email}), please sign up before trying to sign in.`)
-        else
+        //let userExists=await checkIfUserExists(email);
+        //if(userExists.exists && !userExists.hasSignedUp)
+        //  setSignInError(`You are enabled to sign up with this email (${email}), please sign up before trying to sign in.`)
+        // else
           setSignInError("The email or password you've entered is incorrect. Please try again.")
       }
       else {

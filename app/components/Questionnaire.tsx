@@ -110,13 +110,7 @@ export default function Questionnaires() {
       setProdQuestionnaires(await fetchQuestionnaires());
       await fetchResponsesAndInProgress();
       //just to display or not the new questionnaire button
-      if (auth.currentUser?.email) {
-        const responseDocRef = doc(db, "activeUser", auth.currentUser.email);
-        const responseDoc = await getDoc(responseDocRef);
-        if (responseDoc.exists()) {
-          setAdmin(responseDoc.data().admin);
-        }
-      }
+      
       setLoading(false);
     };
 

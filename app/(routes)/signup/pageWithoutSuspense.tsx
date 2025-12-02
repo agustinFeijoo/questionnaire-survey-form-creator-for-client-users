@@ -81,73 +81,11 @@ export default function SignUpPage() {
     setLoading(true);
 
     try {
-      let userExists=await checkIfUserExists(email);
-      if (!userExists.exists) {
-        toast.error("No account found for this email.");
-        setLoading(false);
-        return;
-      }
-
+  
       // Create the user with email and password
       await createUserWithEmailAndPassword(auth, email, password);
       // Automatically sign the user in
-      await signInWithEmailAndPassword(email, password).then(async (userCredential) => {
-        if(userCredential){
-        const { email: userEmail } = userCredential.user;
-        var onlineTaxmanDocRef, onlineTaxmanDoc;
-        let success = false, tries = 0;
-      
-        while (!success && tries < 10) {
-          await new Promise((resolve) => setTimeout(resolve, 1000)); // with 500 it worked but to be sure
-          try {
-            onlineTaxmanDocRef = doc(db, 'activeUser', email);
-            onlineTaxmanDoc = await getDoc(onlineTaxmanDocRef);
-            if (onlineTaxmanDoc.exists()) {
-              success = true;
-              await fetch('/api/auth', {
-                method: 'POST',
-                headers: {
-                  'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email, password }),
-              });
-              if (onlineTaxmanDoc && onlineTaxmanDoc.data()) {
-                if (continueTo) {
-                  router.push(continueTo);
-                } else {
-                  router.push('/');
-                }
-              }else{
-                setLoading(false);
-              }
-              if(onlineTaxmanDoc.data().admin===true){
-                await sendEmailVerification(userCredential.user);
-                alert("Confirmation email sent to "+userEmail+", please verify your account before signing in to your admin account")
-              }
-
-            } else {
-              console.log("try " + tries);
-            }
-          } catch (e) {
-            console.log("try " + tries);
-          }
-          tries++;
-        }
-      
-        if (!onlineTaxmanDoc) {
-          setLoading(false);
-          toast.success(`The account for ${email} has been created, please sign in`);
-          return;
-        }
-        if (!onlineTaxmanDoc.exists()) {
-          setLoading(false);
-          toast.success(`The account for ${email} has been created, please sign in`);
-        }
-      }
-      });
-      
-
-
+      await signInWithEmailAndPassword(email, password)
     } catch (error: unknown) {
       if (error instanceof Error) {
         let errorMessage = error.message.replace("Firebase: ", "");
