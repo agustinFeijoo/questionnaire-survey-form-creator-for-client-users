@@ -46,4 +46,3 @@ next-env.d.ts
 /.firebase
 
 service-account.json
-/app/firebase.ts

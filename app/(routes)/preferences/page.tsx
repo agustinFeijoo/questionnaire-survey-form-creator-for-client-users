@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useMemo, useState } from "react";
 import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+
 import Head from "next/head";
 import Navbar from "@/app/components/Navbar";
 import Link from "next/link";
