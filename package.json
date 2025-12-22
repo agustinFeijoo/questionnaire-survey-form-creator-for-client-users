@@ -23,7 +23,7 @@
     "formik": "^2.4.6",
     "framer-motion": "^12.5.0",
     "jspdf": "^3.0.1",
-    "next": "^15.2.3",
+    "next": "15.2.8",
     "next-auth": "^4.24.7",
     "protobufjs": "^7.4.0",
     "react": "^19.0.0",
