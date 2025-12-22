@@ -126,7 +126,7 @@ export default function PreferencesPage() {
   return (
     <>
       <Head>
-        <title>{`Online Taxman - Preferences`}</title>
+        <title>{`Generic Company - Preferences`}</title>
       </Head>
       <Navbar />
 

@@ -2,7 +2,7 @@
 import { useParams, useRouter, useSearchParams } from 'next/navigation';
 import { useState,  useEffect } from 'react';
 import { auth } from '../../../firebase';
-import onlineTaxmanLogo from "../../../../public/onlineTaxmanLogo.svg";
+import genericLogo from "../../../../public/genericLogo.png";
 import Image from 'next/image';
 import { confirmPasswordReset} from 'firebase/auth';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
@@ -135,7 +135,7 @@ export default function SignUpPage() {
     <form onSubmit={handleResetPassword}>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-          <Image className="mx-auto h-20 w-auto" priority src={onlineTaxmanLogo} alt="Online Taxman" />
+          <Image className="mx-auto h-20 w-auto" priority src={genericLogo} alt="Generic logo" />
           <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight  ">
             Reset your password
           </h2>

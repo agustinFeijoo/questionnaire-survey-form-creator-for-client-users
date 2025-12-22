@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="h-full">
       <head>
-        <title>Online Taxman</title>
+        <title>Generic Company</title>
       </head>
       <body className="h-full text-balance">
         <SessionProvider>

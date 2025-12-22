@@ -1,5 +1,5 @@
 import dynamic from 'next/dynamic';
-import onlineTaxmanLogo from "../../public/onlineTaxmanLogo.svg";
+import genericLogo from "../../public/genericLogo.png";
 import {
   evaluateConditionalLogic
 } from "../(routes)/[...questionnaireName]/helper";
@@ -840,7 +840,7 @@ const addLogoAndDateToPDF = async (
   date: string
 ) => {
   const img = new Image();
-  img.src = onlineTaxmanLogo.src;
+  img.src = genericLogo.src;
   await new Promise((resolve) => {
     img.onload = () => {
       const canvas = document.createElement("canvas");

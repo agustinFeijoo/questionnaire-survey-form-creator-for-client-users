@@ -3,7 +3,7 @@
 import { useRouter } from 'next/navigation';
 import { auth } from '../firebase';
 import { signOut } from 'firebase/auth';
-import onlineTaxmanLogo from "../../public/onlineTaxmanLogo.svg";
+import genericLogo from "../../public/genericLogo.png";
 import Image from 'next/image';
 import { toast } from 'react-toastify';
 import React from 'react';
@@ -36,11 +36,11 @@ export default function Navbar() {
     <div className="flex items-center cursor-pointer">
       <Image 
         onClick={() => location.replace("/")}
-        src={onlineTaxmanLogo} 
+        src={genericLogo} 
         priority
-        alt="Online Taxman Logo" 
-        width={186.08}  
-        height={75.2}  // Adjust as needed
+        alt="Generic Company Logo" 
+        width={93.08}  
+        height={32.5}  // Adjust as needed
       />
     </div>
 

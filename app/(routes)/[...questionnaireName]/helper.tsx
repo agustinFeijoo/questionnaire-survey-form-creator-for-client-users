@@ -491,16 +491,16 @@ export const createNewInProgressQuestionnaire = async (
   email: string
 ): Promise<number | undefined> => {
   try {
-    const onlineTaxmanRef = doc(db, 'inProgressQuestionnaire', email);
-    const onlineTaxmanDoc = await getDoc(onlineTaxmanRef);
+    const genericCompanyRef = doc(db, 'inProgressQuestionnaire', email);
+    const genericCompanyDoc = await getDoc(genericCompanyRef);
     const responsesRef = doc(db, 'questionnaireResponse', email);
     const responsesDoc = await getDoc(responsesRef);
 
 
     let highestWIID = 0;
 
-    if (onlineTaxmanDoc.exists()) {
-      const inProgressQuestionnaires = onlineTaxmanDoc.data();
+    if (genericCompanyDoc.exists()) {
+      const inProgressQuestionnaires = genericCompanyDoc.data();
 
       // Iterate through the WI records to find the matching questionnaireIdInPortal and determine the highest WIID
       for (const [key, value] of Object.entries(inProgressQuestionnaires)) {
@@ -532,7 +532,7 @@ export const createNewInProgressQuestionnaire = async (
     };
 
     // Update or create the document in Firestore
-    await setDoc(onlineTaxmanRef, {
+    await setDoc(genericCompanyRef, {
       [WIID]: newWI,
     }, { merge: true }); // Merge true to add the new WIID without overwriting existing data
 

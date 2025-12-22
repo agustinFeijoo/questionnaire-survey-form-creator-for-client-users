@@ -198,7 +198,7 @@ export default function ClientQuestionnaire() {
     <>
         
       <Head>
-        <title>{`Online Taxman - ${questionnaireName?.replaceAll("-", " ")}`}</title>
+        <title>{`Generic Company - ${questionnaireName?.replaceAll("-", " ")}`}</title>
       </Head>
       <Navbar />
       

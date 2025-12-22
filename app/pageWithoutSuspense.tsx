@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { onAuthStateChanged, signInWithEmailAndPassword, User, getAuth } from 'firebase/auth';
 import Image from 'next/image';
-import onlineTaxmanLogo from "../public/onlineTaxmanLogo.svg";
+import genericLogo from "../public/genericLogo.png";
 import Questionnaires from './components/Questionnaire';
 import { toast } from 'react-toastify';
 import Spinner from '@/app/components/Spinner'; // Import your Spinner component
@@ -126,7 +126,7 @@ export default function PageWithoutSuspense() {
       <form onSubmit={handleSubmit}>
         <div className="flex flex-1 flex-col justify-center items-center px-6 py-12 lg:px-8">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-            <Image className="mx-auto h-20 w-auto" src={onlineTaxmanLogo} alt="Online Taxman" priority />
+            <Image className="mx-auto h-20 w-auto" src={genericLogo} alt="Generic Company" priority />
             <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight ">
               Sign in to your account
             </h2>
